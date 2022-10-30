@@ -141,6 +141,25 @@ Clone the repo to you local workstation and `cd` into it.
 
 4. Fill out the Age public key in the `.config.env` under `BOOTSTRAP_AGE_PUBLIC_KEY`, **note** the public key should start with `age`...
 
+### ⚠️ Setting Ansible valut password
+
+    ```sh
+    echo 'my_vault_password' > ~/.vault_pass.txt
+    ```
+
+### ⚠️ Setting up direnv
+
+Add the following line at the end of the ~/.bashrc file:
+
+    ```sh
+    eval "$(direnv hook bash)"
+    ```
+The security mechanism didn't allow to load the .envrc. Since we trust it, let's allow its execution.
+
+    ```sh
+    direnv allow .
+    ```
+
 ### ⚡ Preparing Debian Server with Ansible
 
 📍 Here we will be running a Ansible Playbook to prepare Debian Server for running a Kubernetes cluster.

@@ -73,8 +73,6 @@ tasks:
     cmds:
       - ansible-playbook -i {{.ANSIBLE_INVENTORY_DIR}}/hosts.yml --tags=firewalld {{.ANSIBLE_PLAYBOOK_DIR}}/cluster-prepare.yml
 
-# Ansible galaxy list installed roles and collections
-
   list-rools:
     desc: Ansible galaxy list installed roles and collections
     cmds:
@@ -84,19 +82,3 @@ tasks:
     desc: Ansible galaxy list installed collections
     cmds:
       - ansible-galaxy collection list
-
-# Ansible playbooks
-
-  playbook-test:
-    desc: Ansible playbook test
-    cmds:
-      - ansible-playbook -i {{.ANSIBLE_INVENTORY_DIR}}/hosts.yml {{.ANSIBLE_PLAYBOOK_DIR}}/test.yml
-
-# Ansible vault encrypt inventory hosts
-
-  encrypt-inventory-hosts:
-    desc: ansible-vault encrypt inventory host
-    cmds:
-      - ansible-vault encrypt_string 'ANSIBLE_HOST' --name 'ansible_host' --vault-password-file ~/.vault_pass
-      - ansible-vault encrypt_string 'ANSIBLE_USER' --name 'ansible_user' --vault-password-file ~/.vault_pass
-      - ansible-vault encrypt_string 'ANSIBLE_PASSWORD' --name 'ansible_become_pass' --vault-password-file ~/.vault_pass

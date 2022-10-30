@@ -48,7 +48,7 @@ spec:
 #                    - ${SECRET_DOMAIN}
               - http01:
                   ingress:
-                    class: nginx-ingress
+                    class: nginx
 
       - apiVersion: cert-manager.io/v1
         kind: ClusterIssuer
@@ -72,4 +72,4 @@ spec:
 #                    - ${SECRET_DOMAIN}
               - http01:
                   ingress:
-                    class: nginx-ingress
+                    class: nginx

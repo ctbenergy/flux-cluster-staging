@@ -41,7 +41,7 @@
 ### Ansible vault password
 
 Keep this password in another place away from your playbook repository.
-I have my Ansible vault password in `~/vault_pass` Create your own.
+I have my Ansible vault password in `~/vault_pass.txt` Create your own.
 
 ### Ansible vault encrypt/view/decrypt
 
@@ -51,6 +51,10 @@ ansible-vault view vault_test.yml
 ansible-vault decrypt vault_test.yml
 ansible-vault create vault_test.yml
 ansible-vault edit vault_test.yml
+```
+
+```bash
+ansible-vault encrypt_string 'ANSIBLE_HOST' --name 'ansible_host' --vault-password-file ~/.vault_pass
 ```
 
 ### Ansible vault id
@@ -65,14 +69,18 @@ or use the `vault_identity_list` in the `default` section from `ansible.cfg`.
 
 ```bash
 ansible-vault encrypt_string --encrypt-vault-id staging 'ANSIBLE_HOST' --name 'ansible_host'
-ansible-vault encrypt_string --encrypt-vault-id staging 'ANSIBLE_USER' --name 'ansible_user'
-ansible-vault encrypt_string --encrypt-vault-id staging 'ANSIBLE_PASSWORD' --name 'ansible_become_pass'
 ```
 
 ## Ansible inventory
 
 ```bash
 ansible-inventory -i inventory/staging/hosts.yml --list
+```
+
+## Ansible playbook
+
+```bash
+ansible-playbook -i {{.ANSIBLE_INVENTORY_DIR}}/hosts.yml {{.ANSIBLE_PLAYBOOK_DIR}}/test.yml
 ```
 
 # Ansible Galaxy
