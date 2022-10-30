@@ -1,0 +1,35 @@
+# Trash
+.DS_Store
+Thumbs.db
+# k8s
+kubeconfig
+# vscode-sops
+.decrypted~*.yaml
+.config.env
+*.agekey
+*.pub
+*.key
+github-deploy-key*
+# Ansible
+xanmanning.k3s*
+# Terraform
+.terraform
+.terraform.tfstate*
+terraform.tfstate*
+megalinter-reports
+
+.todo
+
+provision/ansible/vault_test.yml
+
+provision/ansible/playbooks/apt_dist_upgrade.yml
+provision/ansible/playbooks/deploy_ssh_key.yml
+provision/ansible/playbooks/generate_openssh_keypair.yml
+provision/ansible/playbooks/restrict_ssh_login.yml
+provision/ansible/playbooks/test.yml
+
+provision/ansible/playbooks/roles/prepare/.travis.yml
+provision/ansible/playbooks/roles/prepare/LICENSE
+provision/ansible/playbooks/roles/prepare/README.md
+
+provision/scripts

@@ -1,0 +1,3 @@
+---
+prepare_ssh_config_path: /etc/ssh/sshd_config
+prepare_sshd_name: sshd

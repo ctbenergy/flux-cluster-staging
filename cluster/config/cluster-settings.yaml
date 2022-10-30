@@ -1,0 +1,11 @@
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: cluster-settings
+  namespace: flux-system
+data:
+  TIMEZONE: Europe/Vienna
+#  METALLB_LB_RANGE: 45.157.178.195
+#  METALLB_K8S_GATEWAY_ADDR: 45.157.178.195
+#  METALLB_INGRESS_ADDR: 45.157.178.195

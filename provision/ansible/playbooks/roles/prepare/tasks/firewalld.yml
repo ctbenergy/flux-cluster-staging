@@ -1,0 +1,35 @@
+---
+
+# https://docs.ansible.com/ansible/latest/collections/ansible/posix/firewalld_module.html
+# https://docs.k3s.io/installation/requirements
+# https://docs.oracle.com/en/operating-systems/olcne/1.1/start/ports.html
+
+- name: Permit traffic in default zone (public) for Kubernetes API server (master nodes)
+  ansible.posix.firewalld:
+    port: 6443/tcp
+    permanent: true
+    state: enabled
+  tags:
+    - firewalld
+
+- name: Permit traffic in default zone (public) for https service
+  ansible.posix.firewalld:
+    service: https
+    permanent: true
+    state: enabled
+  tags:
+    - firewalld
+
+# - name: Restart service firewalld, in all cases
+#   ansible.builtin.service:
+#     name: firewalld
+#     state: restarted
+#   tags:
+#     - firewalld
+
+- name: Reload service firewalld
+  ansible.builtin.systemd:
+    name: firewalld
+    state: reloaded
+  tags:
+    - firewalld

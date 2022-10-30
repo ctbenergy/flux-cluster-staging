@@ -1,0 +1,57 @@
+---
+- name: Include OS-specific variables.
+  ansible.builtin.include_vars: "{{ ansible_os_family }}.yml"
+
+- name: Locale
+  ansible.builtin.include_tasks: locale.yml
+  tags:
+    - locale
+  when: prepare_locale_enabled | bool
+
+- name: Packages
+  ansible.builtin.include_tasks: packages.yml
+  tags:
+    - packages
+  when: prepare_packages_enabled | bool
+
+- name: Kernel
+  ansible.builtin.include_tasks: kernel.yml
+  tags:
+    - kernel
+  when: prepare_kernel_enabled | bool
+
+- name: Network
+  ansible.builtin.include_tasks: network.yml
+  tags:
+    - network
+  when: prepare_network_enabled | bool
+
+- name: Filesystem
+  ansible.builtin.include_tasks: filesystem.yml
+  tags:
+    - filesystem
+  when: prepare_filesystem_enabled | bool
+
+- name: Unattended upgrades
+  ansible.builtin.include_tasks: unattended-upgrades.yml
+  tags:
+    - unattended-upgrades
+  when: prepare_unattended_upgrades_enabled | bool
+
+- name: User
+  ansible.builtin.include_tasks: user.yml
+  tags:
+    - user
+  when: prepare_user_enabled | bool
+
+- name: Fail2Ban
+  ansible.builtin.include_tasks: fail2ban.yml
+  tags:
+    - fail2ban
+  when: prepare_fail2ban_enabled | bool
+
+- name: Firewalld
+  ansible.builtin.include_tasks: firewalld.yml
+  tags:
+    - firewalld
+  when: prepare_firewalld_enabled | bool

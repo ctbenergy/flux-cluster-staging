@@ -1,0 +1,11 @@
+---
+prepare_ssh_port: 22
+prepare_locale_enabled: true
+prepare_packages_enabled: true
+prepare_kernel_enabled: true
+prepare_network_enabled: true
+prepare_filesystem_enabled: true
+prepare_unattended_upgrades_enabled: false
+prepare_user_enabled: false
+prepare_fail2ban_enabled: true
+prepare_firewalld_enabled: true

@@ -1,0 +1,26 @@
+---
+extends: default
+
+rules:
+  truthy: disable
+  line-length: disable
+#  line-length:
+#    max: 120
+#    level: warning
+  empty-lines:
+    max: 2
+    level: warning
+  new-lines:
+    type: unix
+  new-line-at-end-of-file: disable
+  braces:
+    max-spaces-inside: 1
+    level: error
+  brackets:
+    max-spaces-inside: 1
+    level: error
+
+ignore: |
+  .github/stale.yml
+  .travis.yml
+#  roles/

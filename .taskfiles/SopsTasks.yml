@@ -1,0 +1,28 @@
+---
+version: "3"
+
+vars:
+  ANSIBLE_INVENTORY_DIR: "{{.ANSIBLE_DIR}}/inventory"
+
+tasks:
+
+  encrypt:
+    desc: encrypt sops file 'to use must include -- before path to file.' eg "task sops:encrypt -- file.yml"
+    cmds:
+      - sops --encrypt --in-place {{.CLI_ARGS}}
+
+  decrypt:
+    desc: decrypt sops file 'to use must include -- before path to file.'  eg "task sops:decrypt -- file.yml"
+    cmds:
+      - sops --decrypt --in-place {{.CLI_ARGS}}
+
+  encrypt-host-secrets:
+    desc: encrypt host secrets
+    cmds:
+      - echo ${{.ANSIBLE_INVENTORY_DIR}}
+      - sops --encrypt --in-place "{{.ANSIBLE_INVENTORY_DIR}}/host_vars/k8s-0.sops.yml"
+
+  decrypt-host-secrets:
+    desc: decrypt host secrets
+    cmds:
+      - sops --decrypt --in-place "{{.ANSIBLE_INVENTORY_DIR}}/host_vars/k8s-0.sops.yml"

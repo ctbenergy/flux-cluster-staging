@@ -1,0 +1,15 @@
+---
+# (string) Timezone for the servers
+timezone: "Europe/Vienna"
+
+# (list) Additional ssh public keys to add to the nodes
+# ssh_authorized_keys:
+
+packages:
+  - firewalld
+  - hdparm
+  - htop
+  - nmap
+#  - unattended-upgrades
+#  - curl
+#  - socat
