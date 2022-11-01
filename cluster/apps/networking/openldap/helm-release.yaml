@@ -1,0 +1,66 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: openldap
+  namespace: networking
+spec:
+  interval: 5m
+  chart:
+    spec:
+      chart: openldap-stack-ha
+      version: 3.2.0
+      sourceRef:
+        kind: HelmRepository
+        name: jp-gouin
+        namespace: flux-system
+      interval: 5m
+  values:
+    global:
+      imageRegistry: ""
+      imagePullSecrets: ["harbor"]
+      storageClass: ""
+      ldapDomain: ${SECRET_LDAP_DOMAIN}
+      adminPassword: ${SECRET_LDAP_ADMIN_PASSWORD}
+      configPassword: ${SECRET_LDAP_CONFIG_PASSWORD}
+    replication:
+      enabled: false
+    persistence:
+      enabled: true
+      existingClaim: openldap-pvc
+    resources:
+      requests:
+        cpu: 50m
+        memory: 64Mi
+      limits:
+        memory: 96Mi
+    ltb-passwd:
+      enabled: true
+      image:
+        tag: 5.2.3
+      ingress:
+        enabled: true
+        ingressClassName: "nginx"
+        annotations:
+          cert-manager.io/cluster-issuer: "letsencrypt-staging"
+          external-dns.alpha.kubernetes.io/target: "ipv4.${SECRET_DOMAIN}"
+          external-dns/is-public: "true"
+        path: /
+        pathType: Prefix
+        hosts: ssl-ldap2.${SECRET_DOMAIN}
+      ldap:
+        bindPWKey: LDAP_ADMIN_PASSWORD
+    phpldapadmin:
+      enabled: enable
+      env:
+        PHPLDAPADMIN_LDAP_CLIENT_TLS_REQCERT: "never"
+      ingress:
+        enabled: true
+        ingressClassName: "nginx"
+        podAnnotations:
+          cert-manager.io/cluster-issuer: "letsencrypt-staging"
+          external-dns.alpha.kubernetes.io/target: "ipv4.${SECRET_DOMAIN}"
+          external-dns/is-public: "true"
+        path: /
+        pathType: Prefix
+        hosts: phpldapadmin.${SECRET_DOMAIN}
