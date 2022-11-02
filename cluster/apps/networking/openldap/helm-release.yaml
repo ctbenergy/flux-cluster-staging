@@ -17,9 +17,9 @@ spec:
       interval: 5m
   values:
     global:
-      imageRegistry: ""
-      imagePullSecrets: ["harbor"]
-      storageClass: ""
+      # imageRegistry: ""
+      # imagePullSecrets: ["harbor"]
+      # storageClass: ""
       ldapDomain: ${SECRET_LDAP_DOMAIN}
       adminPassword: ${SECRET_LDAP_ADMIN_PASSWORD}
       configPassword: ${SECRET_LDAP_CONFIG_PASSWORD}
