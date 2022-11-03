@@ -52,7 +52,14 @@ spec:
         path: /
         pathType: Prefix
         hosts:
-          - ssl-ldap2.${SECRET_DOMAIN}
+          - host: ssl-ldap2.${SECRET_DOMAIN}
+            paths:
+              - path: /
+                pathType: Prefix
+        tls:
+          - hosts:
+              - ssl-ldap2.${SECRET_DOMAIN}
+            secretName: "ssl-ldap2-tls"
       ldap:
         bindPWKey: LDAP_ADMIN_PASSWORD
     phpldapadmin:
@@ -69,4 +76,11 @@ spec:
         path: /
         pathType: Prefix
         hosts:
-          - phpldapadmin.${SECRET_DOMAIN}
+          - host: phpldapadmin.${SECRET_DOMAIN}
+            paths:
+              - path: /
+                pathType: Prefix
+        tls:
+          - hosts:
+              - phpldapadmin.${SECRET_DOMAIN}
+            secretName: "phpldapadmin-tls"
