@@ -51,7 +51,8 @@ spec:
           external-dns/is-public: "true"
         path: /
         pathType: Prefix
-        hosts: ssl-ldap2.${SECRET_DOMAIN}
+        hosts:
+          - ssl-ldap2.${SECRET_DOMAIN}
       ldap:
         bindPWKey: LDAP_ADMIN_PASSWORD
     phpldapadmin:
@@ -67,4 +68,5 @@ spec:
           external-dns/is-public: "true"
         path: /
         pathType: Prefix
-        hosts: phpldapadmin.${SECRET_DOMAIN}
+        hosts:
+          - phpldapadmin.${SECRET_DOMAIN}
