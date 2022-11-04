@@ -49,8 +49,6 @@ spec:
           cert-manager.io/cluster-issuer: "letsencrypt-staging"
           external-dns.alpha.kubernetes.io/target: "ipv4.${SECRET_DOMAIN}"
           external-dns/is-public: "true"
-        path: /
-        pathType: Prefix
         hosts:
           - host: ssl-ldap2.${SECRET_DOMAIN}
             paths:
@@ -76,8 +74,6 @@ spec:
           cert-manager.io/cluster-issuer: "letsencrypt-staging"
           external-dns.alpha.kubernetes.io/target: "ipv4.${SECRET_DOMAIN}"
           external-dns/is-public: "true"
-        path: /
-        pathType: Prefix
         hosts:
           - host: phpldapadmin.${SECRET_DOMAIN}
             paths:
