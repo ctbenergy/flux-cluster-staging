@@ -5,7 +5,7 @@ metadata:
   name: openldap
   namespace: networking
 spec:
-  interval: 5m
+  interval: 15m
   chart:
     spec:
       chart: openldap-stack-ha
@@ -14,7 +14,6 @@ spec:
         kind: HelmRepository
         name: jp-gouin
         namespace: flux-system
-      interval: 5m
   values:
     global:
       ldapDomain: ${SECRET_DOMAIN}
@@ -24,7 +23,7 @@ spec:
       repository: osixia/openldap
       tag: 1.5.0
       pullPolicy: IfNotPresent
-    existingSecret: "openldap"
+    existingSecret: openldap
     env:
       LDAP_ORGANISATION: ${LDAP_ORGANISATION}
       LDAP_READONLY_USER_USERNAME: ${LDAP_READONLY_USER_USERNAME}
@@ -34,12 +33,12 @@ spec:
       existingClaim: openldap-pvc
     resources:
       requests:
-        cpu: 50m
-        memory: 64Mi
+        cpu: 100m
+        memory: 128Mi
       limits:
-        memory: 96Mi
+        memory: 256Mi
     ltb-passwd:
-      enabled: true
+      enabled: false
       image:
         tag: 5.2.3
       ingress:
@@ -61,9 +60,12 @@ spec:
               - ssl-ldap2.${SECRET_DOMAIN}
             secretName: "ssl-ldap2-tls"
       ldap:
+        server: ldaps://openldap-openldap-stack-ha
+        existingSecret: openldap
+        bindDN: LDAP_BINDDN
         bindPWKey: LDAP_ADMIN_PASSWORD
     phpldapadmin:
-      enabled: enable
+      enabled: true
       env:
         PHPLDAPADMIN_LDAP_CLIENT_TLS_REQCERT: "never"
       ingress:
@@ -83,4 +85,4 @@ spec:
         tls:
           - hosts:
               - phpldapadmin.${SECRET_DOMAIN}
-            secretName: "phpldapadmin-tls"
+            secretName: phpldapadmin-tls
