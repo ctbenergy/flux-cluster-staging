@@ -50,14 +50,14 @@ spec:
           external-dns.alpha.kubernetes.io/target: "ipv4.${SECRET_DOMAIN}"
           external-dns/is-public: "true"
         hosts:
-          - host: ssl-ldap2.${SECRET_DOMAIN}
+          - host: ldap.${SECRET_DOMAIN}
             paths:
               - path: /
                 pathType: Prefix
         tls:
           - hosts:
-              - ssl-ldap2.${SECRET_DOMAIN}
-            secretName: "ssl-ldap2-tls"
+              - ldap.${SECRET_DOMAIN}
+            secretName: "ldap-tls"
       ldap:
         server: ldaps://openldap-openldap-stack-ha
         existingSecret: openldap
