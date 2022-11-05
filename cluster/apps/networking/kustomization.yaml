@@ -10,3 +10,4 @@ resources:
   # - k8s-gateway
   - cert-manager
   - openldap
+  - lldap
