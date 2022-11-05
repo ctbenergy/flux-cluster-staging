@@ -56,7 +56,7 @@ spec:
     log:
       verbose: false
     jwt:
-      secret: "${SECRET_LLDAP_JWT}"
+      secret: ""
       useSecretFile: false
     ldap:
       baseDn: "${SECRET_DOMAIN}"
