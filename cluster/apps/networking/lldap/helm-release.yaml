@@ -1,0 +1,66 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: lldap
+  namespace: networking
+spec:
+  interval: 15m
+  chart:
+    spec:
+      chart: lldap
+      version: 0.4.4
+      sourceRef:
+        kind: HelmRepository
+        name: ajgon
+        namespace: flux-system
+  values:
+    domain: "${SECRET_DOMAIN}"
+    timezone: "${TIMEZONE}"
+    replicaCount: 1
+    # resources:
+    # requests:
+    #    cpu: 100m
+    #    memory: 128Mi
+    #  limits:
+    #    memory: 256Mi
+    service:
+      type: ClusterIP
+      httpPort: 17170
+      ldapPort: 389
+      ldapsPort: 636
+    image:
+      registry: docker.io
+      repository: nitnelave/lldap
+      tag: 0.4.1
+      pullPolicy: IfNotPresent
+    ingress:
+      enabled: true
+      ingressClassName: "nginx"
+      podAnnotations:
+        cert-manager.io/cluster-issuer: "letsencrypt-staging"
+        external-dns.alpha.kubernetes.io/target: "ipv4.${SECRET_DOMAIN}"
+        external-dns/is-public: "true"
+      hosts:
+        - host: lldap.${SECRET_DOMAIN}
+          paths:
+            - path: /
+              pathType: Prefix
+      tls:
+        - hosts:
+            - lldap.${SECRET_DOMAIN}
+          secretName: lldap-tls
+    persistence:
+      enabled: true
+      existingClaim: lldap-pvc
+    log:
+      verbose: false
+    jwt:
+      secret: "${SECRET_LLDAP_JWT}"
+      useSecretFile: false
+    ldap:
+      baseDn: "${SECRET_DOMAIN}"
+      userDn: "${SECRET_LLDAP_USER_DN}"
+      userEmail: "${SECRET_LLDAP_USER_EMAIL}"
+      userPass: "${SECRET_LLDAP_USER_PASS}"
+      useSecretFile: false
