@@ -67,7 +67,7 @@ spec:
       useSecretFile: true
     ldap:
       baseDn: ""
-      userDn: "admin"
+      userDn: "cn=admin,dc=weinhandl,dc=org"
       userEmail: "admin@localhost"
       #userPass: ""
       useSecretFile: true
