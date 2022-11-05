@@ -64,10 +64,10 @@ spec:
       verbose: false
     jwt:
       #secret: ""
-      useSecretFile: false
+      useSecretFile: true
     ldap:
       baseDn: ""
-      #userDn: "admin"
-      #userEmail: "admin@localhost"
+      userDn: "admin"
+      userEmail: "admin@localhost"
       #userPass: ""
-      useSecretFile: false
+      useSecretFile: true
