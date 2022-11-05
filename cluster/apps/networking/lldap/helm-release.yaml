@@ -64,10 +64,10 @@ spec:
       verbose: false
     jwt:
       secret: ""
-      useSecretFile: false
+      useSecretFile: true
     ldap:
       baseDn: "${SECRET_DOMAIN}"
-      userDn: "${SECRET_LLDAP_USER_DN}"
-      userEmail: "${SECRET_LLDAP_USER_EMAIL}"
-      userPass: "${SECRET_LLDAP_USER_PASS}"
-      useSecretFile: false
+      #userDn: "${SECRET_LLDAP_USER_DN}"
+      #userEmail: "${SECRET_LLDAP_USER_EMAIL}"
+      #userPass: "${SECRET_LLDAP_USER_PASS}"
+      useSecretFile: true
