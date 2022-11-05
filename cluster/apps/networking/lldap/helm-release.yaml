@@ -37,9 +37,9 @@ spec:
       ldapPort: 389
       ldapsPort: 636
     image:
-      registry: docker.io
-      repository: nitnelave/lldap
-      tag: 0.4.1
+      #registry: docker.io
+      #repository: nitnelave/lldap
+      tag: v0.4.1
       pullPolicy: IfNotPresent
     ingress:
       enabled: true
