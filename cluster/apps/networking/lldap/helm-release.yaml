@@ -66,8 +66,8 @@ spec:
       secret: ""
       useSecretFile: true
     ldap:
-      baseDn: "${SECRET_DOMAIN}"
+      baseDn: ""
       #userDn: "${SECRET_LLDAP_USER_DN}"
-      #userEmail: "${SECRET_LLDAP_USER_EMAIL}"
+      #userEmail: "admin@localhost"
       #userPass: "${SECRET_LLDAP_USER_PASS}"
       useSecretFile: true
