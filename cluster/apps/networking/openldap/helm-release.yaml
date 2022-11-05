@@ -14,6 +14,13 @@ spec:
         kind: HelmRepository
         name: jp-gouin
         namespace: flux-system
+  install:
+    createNamespace: true
+    remediation:
+      retries: 5
+  upgrade:
+    remediation:
+      retries: 5
   values:
     global:
       ldapDomain: ${SECRET_DOMAIN}

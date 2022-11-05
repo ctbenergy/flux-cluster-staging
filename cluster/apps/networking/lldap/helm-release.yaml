@@ -14,6 +14,13 @@ spec:
         kind: HelmRepository
         name: ajgon
         namespace: flux-system
+  install:
+    createNamespace: true
+    remediation:
+      retries: 5
+  upgrade:
+    remediation:
+      retries: 5
   values:
     domain: "${SECRET_DOMAIN}"
     timezone: "${TIMEZONE}"
