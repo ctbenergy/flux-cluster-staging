@@ -36,8 +36,8 @@ spec:
       pullPolicy: IfNotPresent
     ingress:
       enabled: true
-      ingressClassName: "nginx"
-      podAnnotations:
+      className: "nginx"
+      annotations:
         cert-manager.io/cluster-issuer: "letsencrypt-staging"
         external-dns.alpha.kubernetes.io/target: "ipv4.${SECRET_DOMAIN}"
         external-dns/is-public: "true"
