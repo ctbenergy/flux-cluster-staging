@@ -63,8 +63,6 @@ main() {
             > "${PROJECT_DIR}/cluster/apps/networking/lldap/lldap-secrets.sops.yaml"
         envsubst < "${PROJECT_DIR}/tmpl/cluster/authelia-secrets.sops.yaml" \
             > "${PROJECT_DIR}/cluster/apps/networking/authelia/authelia-secrets.sops.yaml"
-        envsubst < "${PROJECT_DIR}/tmpl/cluster/authelia-users-secrets.sops.yaml" \
-            > "${PROJECT_DIR}/cluster/apps/networking/authelia/authelia-users-secrets.sops.yaml"
         # encrypt cluster secrets
         sops --encrypt --in-place "${PROJECT_DIR}/cluster/config/cluster-secrets.sops.yaml"
         sops --encrypt --in-place "${PROJECT_DIR}/cluster/apps/networking/cert-manager/issuers/secret.sops.yaml"
@@ -73,7 +71,6 @@ main() {
         sops --encrypt --in-place "${PROJECT_DIR}/cluster/apps/networking/openldap/openldap-secrets.sops.yaml"
         sops --encrypt --in-place "${PROJECT_DIR}/cluster/apps/networking/lldap/lldap-secrets.sops.yaml"
         sops --encrypt --in-place "${PROJECT_DIR}/cluster/apps/networking/authelia/authelia-secrets.sops.yaml"
-        sops --encrypt --in-place "${PROJECT_DIR}/cluster/apps/networking/authelia/authelia-users-secrets.sops.yaml"
         # generate terraform secrets
         #envsubst < "${PROJECT_DIR}/tmpl/terraform/secret.sops.yaml" \
         #    > "${PROJECT_DIR}/provision/terraform/cloudflare/secret.sops.yaml"

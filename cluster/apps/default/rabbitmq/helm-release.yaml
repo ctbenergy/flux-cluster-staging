@@ -1,0 +1,60 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: rabbitmq
+  namespace: default
+spec:
+  interval: 15m
+  chart:
+    spec:
+      chart: rabbitmq
+      version: 11.1.1
+      sourceRef:
+        kind: HelmRepository
+        name: bitnami
+        namespace: flux-system
+      interval: 15m
+  install:
+    createNamespace: true
+    remediation:
+      retries: 5
+  upgrade:
+    remediation:
+      retries: 5
+  values:
+    replicaCount: 1
+    # resources:
+    # requests:
+    #    cpu: 100m
+    #    memory: 128Mi
+    #  limits:
+    #    memory: 256Mi
+    service:
+      type: ClusterIP
+    image:
+      # registry: docker.io
+      # repository: bitnami/bitnami-shell
+      # tag: 11-debian-11-r43
+      pullPolicy: IfNotPresent
+    ingress:
+      enabled: true
+      className: "nginx"
+      annotations:
+        cert-manager.io/cluster-issuer: "letsencrypt-staging"
+        external-dns.alpha.kubernetes.io/target: "ipv4.${SECRET_DOMAIN}"
+        external-dns/is-public: "true"
+      hosts:
+        - host: lldap.${SECRET_DOMAIN}
+          paths:
+            - path: /
+              pathType: Prefix
+      tls:
+        - hosts:
+            - rabbitmq.${SECRET_DOMAIN}
+          secretName: rabbitmq-tls
+    persistence:
+      enabled: true
+      existingClaim: rabbitmq-pvc
+    log:
+      verbose: false
