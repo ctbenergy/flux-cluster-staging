@@ -63,11 +63,11 @@ spec:
     log:
       verbose: false
     jwt:
-      secret: "1234567"
-      useSecretFile: false
+      secret: ""
+      useSecretFile: true
     ldap:
       baseDn: ""
       userDn: "admin"
       userEmail: "admin@localhost"
-      userPass: "1234567"
-      useSecretFile: false
+      userPass: ""
+      useSecretFile: true
