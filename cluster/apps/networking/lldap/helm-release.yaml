@@ -37,8 +37,8 @@ spec:
       ldapPort: 389
       ldapsPort: 636
     image:
-      #registry: docker.io
-      #repository: nitnelave/lldap
+      # registry: docker.io
+      # repository: nitnelave/lldap
       tag: v0.4.1
       pullPolicy: IfNotPresent
     ingress:
@@ -63,11 +63,11 @@ spec:
     log:
       verbose: false
     jwt:
-      secret: ""
+      secret: ${SECRET_LLDAP_JWT_SECRET}
       useSecretFile: false
     ldap:
       baseDn: ""
       userDn: "admin"
       userEmail: "admin@localhost"
-      userPass: ""
+      userPass: ${SECRET_LLDAP_USER_PASS}
       useSecretFile: false

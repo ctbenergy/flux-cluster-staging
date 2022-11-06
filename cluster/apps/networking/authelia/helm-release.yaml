@@ -1,0 +1,149 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: authelia
+  namespace: networking
+spec:
+  interval: 5m
+  chart:
+    spec:
+      chart: authelia
+      version: 0.8.45
+      sourceRef:
+        kind: HelmRepository
+        name: authelia
+        namespace: flux-system
+      interval: 5m
+  values:
+    domain: ${SECRET_DOMAIN}
+    ingress:
+      enabled: true
+      subdomain: auth
+      className: nginx
+      annotations:
+        external-dns.alpha.kubernetes.io/target: "ipv4.${SECRET_DOMAIN}"
+        external-dns/is-public: "true"
+      tls:
+        enabled: true
+    pod:
+      kind: Deployment
+      replicas: 1
+      strategy:
+        type: Recreate
+    configMap:
+      theme: dark
+      authentication_backend:
+        # Password reset through authelia works normally.
+        password_reset:
+          disable: false
+        # How often authelia should check if there is an user update in LDAP
+        refresh_interval: 1m
+        ldap:
+          implementation: custom
+          # Pattern is ldap://HOSTNAME-OR-IP:PORT
+          # Normal ldap port is 389, standard in LLDAP is 3890
+          # url: ldap://lldap:3890
+          url: ldap://lldap.networking.svc.cluster.local
+          # The dial timeout for LDAP.
+          timeout: 5s
+          # Use StartTLS with the LDAP connection, TLS not supported right now
+          start_tls: false
+          # Set base dn, like dc=google,dc.com
+          base_dn: ${SECRET_AUTHELIA_LDAP_BASE_DN}
+          username_attribute: uid
+          # You need to set this to ou=people, because all users are stored in this ou!
+          additional_users_dn: ou=people
+          # To allow sign in both with username and email, one can use a filter like
+          # (&(|({username_attribute}={input})({mail_attribute}={input}))(objectClass=person))
+          users_filter: "(&({username_attribute}={input})(objectClass=person))"
+          # Set this to ou=groups, because all groups are stored in this ou
+          additional_groups_dn: ou=groups
+          # Only this filter is supported right now
+          groups_filter: "(member={dn})"
+          # The attribute holding the name of the group.
+          group_name_attribute: cn
+          # Email attribute
+          mail_attribute: mail
+          # The attribute holding the display name of the user. This will be used to greet an authenticated user.
+          display_name_attribute: displayName
+          # The username and password of the admin user.
+          # "admin" should be the admin username you set in the LLDAP configuration
+          user: uid=admin,ou=people,dc=example,dc=com
+          # Password can also be set using a secret: https://www.authelia.com/docs/configuration/secrets.html
+          password: ${SECRET_LLDAP_USER_PASS}
+        file:
+          enabled: false
+      access_control:
+        default_policy: deny
+        networks:
+          - name: private
+            networks:
+              - ${PRIVATE_NETWORK}
+        rules:
+          # Disable Authelia for local network
+          - policy: bypass
+            domain: "*.${SECRET_DOMAIN}"
+            networks:
+              - private
+          # Disable Authelia for apps that don't support it
+          - policy: bypass
+            domain:
+              - bw.${SECRET_DOMAIN}
+              - cloud.${SECRET_DOMAIN}
+              - firefly-iii.${SECRET_DOMAIN}
+          # No public access
+          - policy: deny
+            domain:
+              - mailu.${SECRET_DOMAIN}
+            resources:
+              - "^/admin.*$"
+          # Applications with built-in auth
+          - policy: one_factor
+            domain:
+              - mailu.${SECRET_DOMAIN}
+              - grafana.${SECRET_DOMAIN}
+              - rancher.${SECRET_DOMAIN}
+          # Applications without auth
+          - policy: two_factor
+            domain:
+              - paperless.${SECRET_DOMAIN}
+              - longhorn.${SECRET_DOMAIN}
+              - homer-config.${SECRET_DOMAIN}
+              - jd2.${SECRET_DOMAIN}
+          # Applications without auth but low security requirements
+          - policy: one_factor
+            domain:
+              - homer.${SECRET_DOMAIN}
+              - prometheus.${SECRET_DOMAIN}
+              - alert-manager.${SECRET_DOMAIN}
+      session:
+        name: authelia_session
+        same_site: lax
+        expiration: 1h
+        inactivity: 5m
+        remember_me_duration: 1M
+        redis:
+          enabled: true
+          enabledSecret: true
+          host: authelia-redis-master
+      regulation:
+        max_retries: 3
+        find_time: 2m
+        ban_time: 5m
+      storage:
+        postgres:
+          enabled: true
+          host: authelia-postgresql
+          database: authelia
+          username: authelia
+      notifier:
+        disable_startup_check: true
+        smtp:
+          enabled: true
+          host: mailu-front.mail.svc.cluster.local
+          sender: authelia@${SECRET_DOMAIN}
+          tls:
+            skip_verify: true
+    secret:
+      existingSecret: authelia

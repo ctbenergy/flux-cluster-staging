@@ -34,9 +34,6 @@ provision/ansible/playbooks/roles/prepare/README.md
 
 cluster/apps/longhorn-system
 
-cluster/apps/networking/authelia
-
-cluster/charts/authelia-charts.yaml
 cluster/charts/longhorn-charts.yaml
 cluster/charts/truecharts-charts.yaml
 

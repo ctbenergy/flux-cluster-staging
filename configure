@@ -57,10 +57,10 @@ main() {
         #    > "${PROJECT_DIR}/cluster/apps/networking/cloudflare-ddns/secret.sops.yaml"
         #envsubst < "${PROJECT_DIR}/tmpl/cluster/external-dns-secret.sops.yaml" \
         #    > "${PROJECT_DIR}/cluster/apps/networking/external-dns/secret.sops.yaml"
-        envsubst < "${PROJECT_DIR}/tmpl/cluster/openldap-secrets.sops.yaml" \
-            > "${PROJECT_DIR}/cluster/apps/networking/openldap/openldap-secrets.sops.yaml"
-        envsubst < "${PROJECT_DIR}/tmpl/cluster/lldap-secrets.sops.yaml" \
-            > "${PROJECT_DIR}/cluster/apps/networking/lldap/lldap-secrets.sops.yaml"
+        #envsubst < "${PROJECT_DIR}/tmpl/cluster/openldap-secrets.sops.yaml" \
+        #    > "${PROJECT_DIR}/cluster/apps/networking/openldap/openldap-secrets.sops.yaml"
+        #envsubst < "${PROJECT_DIR}/tmpl/cluster/lldap-secrets.sops.yaml" \
+        #    > "${PROJECT_DIR}/cluster/apps/networking/lldap/lldap-secrets.sops.yaml"
         envsubst < "${PROJECT_DIR}/tmpl/cluster/authelia-secrets.sops.yaml" \
             > "${PROJECT_DIR}/cluster/apps/networking/authelia/authelia-secrets.sops.yaml"
         # encrypt cluster secrets
@@ -68,8 +68,8 @@ main() {
         sops --encrypt --in-place "${PROJECT_DIR}/cluster/apps/networking/cert-manager/issuers/secret.sops.yaml"
         #sops --encrypt --in-place "${PROJECT_DIR}/cluster/apps/networking/cloudflare-ddns/secret.sops.yaml"
         #sops --encrypt --in-place "${PROJECT_DIR}/cluster/apps/networking/external-dns/secret.sops.yaml"
-        sops --encrypt --in-place "${PROJECT_DIR}/cluster/apps/networking/openldap/openldap-secrets.sops.yaml"
-        sops --encrypt --in-place "${PROJECT_DIR}/cluster/apps/networking/lldap/lldap-secrets.sops.yaml"
+        #sops --encrypt --in-place "${PROJECT_DIR}/cluster/apps/networking/openldap/openldap-secrets.sops.yaml"
+        #sops --encrypt --in-place "${PROJECT_DIR}/cluster/apps/networking/lldap/lldap-secrets.sops.yaml"
         sops --encrypt --in-place "${PROJECT_DIR}/cluster/apps/networking/authelia/authelia-secrets.sops.yaml"
         # generate terraform secrets
         #envsubst < "${PROJECT_DIR}/tmpl/terraform/secret.sops.yaml" \
