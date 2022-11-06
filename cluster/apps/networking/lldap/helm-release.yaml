@@ -31,6 +31,7 @@ spec:
     #    memory: 128Mi
     #  limits:
     #    memory: 256Mi
+    existingSecret: openldap
     service:
       type: ClusterIP
       httpPort: 17170
