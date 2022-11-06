@@ -16,3 +16,4 @@ resources:
   - stakater-charts.yaml
   - jp-gouin-charts.yaml
   - ajgon-charts.yaml
+  - authelia-charts.yaml
