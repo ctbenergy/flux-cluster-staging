@@ -32,7 +32,8 @@ spec:
       strategy:
         type: Recreate
     configMap:
-      theme: dark
+      # theme: dark
+      theme: light
       authentication_backend:
         # Password reset through authelia works normally.
         password_reset:
