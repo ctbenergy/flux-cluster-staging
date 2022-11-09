@@ -31,14 +31,6 @@ spec:
       replicas: 1
       strategy:
         type: Recreate
-      extraVolumes:
-        - name: users-volume
-          secret:
-            secretName: authelia-users
-      extraVolumeMounts:
-        - name: users-volume
-          mountPath: /config/users_database.yml
-          subPath: users_database.yml
     configMap:
       # theme: dark
       theme: light
