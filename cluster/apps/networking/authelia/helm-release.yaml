@@ -45,7 +45,7 @@ spec:
           # Pattern is ldap://HOSTNAME-OR-IP:PORT
           # Normal ldap port is 389, standard in LLDAP is 3890
           # url: ldap://lldap:3890
-          url: ldap://lldap.networking.svc.cluster.local
+          url: ldap://lldap.networking.svc.cluster.local:3890
           # The dial timeout for LDAP.
           timeout: 5s
           # Use StartTLS with the LDAP connection, TLS not supported right now
@@ -141,7 +141,7 @@ spec:
       notifier:
         disable_startup_check: true
         smtp:
-          enabled: true
+          enabled: false
           host: mailu-front.mail.svc.cluster.local
           sender: authelia@${SECRET_DOMAIN}
           tls:
