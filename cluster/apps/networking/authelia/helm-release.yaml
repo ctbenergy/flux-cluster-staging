@@ -148,3 +148,4 @@ spec:
             skip_verify: true
     secret:
       existingSecret: authelia
+      excludeVolumeAndMounts: true
