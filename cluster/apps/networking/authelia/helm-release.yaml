@@ -85,8 +85,8 @@ spec:
           # Disable Authelia for local network
           - policy: bypass
             domain: "*.${SECRET_DOMAIN}"
-            networks:
-              - private
+            # networks:
+            #   - private
           # Disable Authelia for apps that don't support it
           - policy: bypass
             domain:
