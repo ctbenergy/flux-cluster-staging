@@ -15,6 +15,8 @@ spec:
         name: authelia
         namespace: flux-system
       interval: 5m
+  containers:
+    terminationMessagePath: "/tmp/authelia-log"
   values:
     domain: ${SECRET_DOMAIN}
     ingress:
@@ -77,10 +79,10 @@ spec:
           enabled: false
       access_control:
         default_policy: deny
-        networks:
-          - name: private
-            networks:
-              - ${PRIVATE_NETWORK}
+        # networks:
+        #   - name: private
+        #     networks:
+        #       - ${PRIVATE_NETWORK}
         rules:
           # Disable Authelia for local network
           - policy: bypass
@@ -141,7 +143,7 @@ spec:
       notifier:
         disable_startup_check: true
         smtp:
-          enabled: false
+          enabled: true
           host: mailu-front.mail.svc.cluster.local
           sender: authelia@${SECRET_DOMAIN}
           tls:
