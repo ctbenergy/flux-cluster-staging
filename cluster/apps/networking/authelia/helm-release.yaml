@@ -70,7 +70,7 @@ spec:
           display_name_attribute: displayName
           # The username and password of the admin user.
           # "admin" should be the admin username you set in the LLDAP configuration
-          user: ${SECRET_AUTHELIA_LDAP_USER}
+          user: "${SECRET_AUTHELIA_LDAP_USER}"
           # Password can also be set using a secret: https://www.authelia.com/docs/configuration/secrets.html
           password: ${SECRET_LLDAP_USER_PASS}
         file:
