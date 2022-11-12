@@ -26,5 +26,5 @@ spec:
       # serviceMonitor:
         # enabled: true
     auth:
-      existingSecret: authelia
+      existingSecret: authelia-secret
       existingSecretPasswordKey: REDIS_PASSWORD
