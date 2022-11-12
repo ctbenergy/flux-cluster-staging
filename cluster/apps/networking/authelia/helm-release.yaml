@@ -147,4 +147,4 @@ spec:
           tls:
             skip_verify: true
     secret:
-      existingSecret: authelia
+      existingSecret: authelia-secret

@@ -18,8 +18,8 @@ spec:
   values:
     auth:
       username: authelia
-      password: "${SECRET_AUTHELIA_DB_PASSWORD}"
       database: authelia
+      existingSecret: authelia-postgresql-secret
     primary:
       persistence:
         enabled: true
