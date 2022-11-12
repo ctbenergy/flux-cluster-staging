@@ -39,7 +39,8 @@ spec:
     image:
       # registry: docker.io
       # repository: nitnelave/lldap
-      tag: v0.4.1
+      # tag: v0.4.1
+      tag: latest
       pullPolicy: IfNotPresent
     ingress:
       enabled: true
