@@ -62,7 +62,7 @@ spec:
       enabled: true
       existingClaim: lldap-pvc
     log:
-      verbose: false
+      verbose: true
     jwt:
       secret: ${SECRET_LLDAP_JWT_SECRET}
       useSecretFile: true
