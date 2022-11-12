@@ -65,10 +65,10 @@ spec:
       verbose: false
     jwt:
       secret: ${SECRET_LLDAP_JWT_SECRET}
-      useSecretFile: false
+      useSecretFile: true
     ldap:
       baseDn: ""
       userDn: "admin"
       userEmail: "admin@localhost"
       userPass: ${SECRET_LLDAP_USER_PASS}
-      useSecretFile: false
+      useSecretFile: true
