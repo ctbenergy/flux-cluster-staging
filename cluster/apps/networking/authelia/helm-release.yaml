@@ -83,10 +83,10 @@ spec:
         #       - ${PRIVATE_NETWORK}
         rules:
           # Disable Authelia for local network
-          - policy: bypass
-            domain: "*.${SECRET_DOMAIN}"
-            # networks:
-            #   - private
+          # - policy: bypass
+          #   domain: "*.${SECRET_DOMAIN}"
+          #   networks:
+          #     - private
           # Disable Authelia for apps that don't support it
           - policy: bypass
             domain:
@@ -112,12 +112,14 @@ spec:
               - longhorn.${SECRET_DOMAIN}
               - homer-config.${SECRET_DOMAIN}
               - jd2.${SECRET_DOMAIN}
+              - hajimari.${SECRET_DOMAIN}
           # Applications without auth but low security requirements
           - policy: one_factor
             domain:
               - homer.${SECRET_DOMAIN}
               - prometheus.${SECRET_DOMAIN}
               - alert-manager.${SECRET_DOMAIN}
+              - echo-server.${SECRET_DOMAIN}
       session:
         name: authelia_session
         same_site: lax
