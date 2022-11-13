@@ -28,6 +28,14 @@ spec:
     - name: cert-manager-issuers
       namespace: networking
   values:
+    # Configuration for additional TCP ports to be exposed through Ingress
+    # Format for each port would be like:
+    # <PortNumber>: <Namespace>/<Service>
+    tcp:
+      # Map 1636 TCP port to LBR LDAP service to get requests handled through any available POD/Endpoint serving LDAPS Port
+      636: networking/lldap:636
+      # 1883: mqtt/emqx:1883
+      # 8883: mqtt/emqx:8883
     controller:
       replicaCount: 1
       extraEnvs:
@@ -40,6 +48,18 @@ spec:
 #          metallb.universe.tf/loadBalancerIPs: |-
 #            ${METALLB_INGRESS_ADDR}
         externalTrafficPolicy: Local
+        ports:
+          http: 80
+          https: 443
+          ldaps: 636
+          # mqtt: 1883
+          # mqttssl: 8883
+        targetPorts:
+          http: http
+          https: https
+          ldaps: ldaps
+          # mqtt: mqtt
+          # mqttssl: mqttssl
       publishService:
         enabled: true
       ingressClassResource:
