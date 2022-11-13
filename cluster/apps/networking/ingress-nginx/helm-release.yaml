@@ -59,6 +59,7 @@ spec:
         targetPorts:
           http: http
           https: https
+          ldap: ldap
           ldaps: ldaps
           # mqtt: mqtt
           # mqttssl: mqttssl
