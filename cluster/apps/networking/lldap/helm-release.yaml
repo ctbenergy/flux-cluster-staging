@@ -34,8 +34,8 @@ spec:
     service:
       type: ClusterIP
       httpPort: 17170
-      ldapPort: 3890
-      ldapsPort: 6360
+      ldapPort: 389
+      ldapsPort: 636
     image:
       # registry: docker.io
       # repository: nitnelave/lldap
