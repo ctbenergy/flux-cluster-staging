@@ -33,6 +33,8 @@ spec:
     # <PortNumber>: <Namespace>/<Service>
     tcp:
       # Map 1636 TCP port to LBR LDAP service to get requests handled through any available POD/Endpoint serving LDAPS Port
+      "389": "networking/lldap:389"
+      "636": "networking/lldap:636"
       "3890": "networking/lldap:3890"
       "6360": "networking/lldap:6360"
       # "1883": "mqtt/emqx:1883"
