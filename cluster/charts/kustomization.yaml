@@ -18,3 +18,4 @@ resources:
   - ajgon-charts.yaml
   - prometheus-charts.yaml
   - authelia-charts.yaml
+  - emqx-charts.yaml

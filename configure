@@ -65,6 +65,8 @@ main() {
             > "${PROJECT_DIR}/cluster/apps/networking/authelia/authelia-secret.sops.yaml"
         envsubst < "${PROJECT_DIR}/tmpl/cluster/authelia-postgresql-secret.sops.yaml" \
             > "${PROJECT_DIR}/cluster/apps/networking/authelia/authelia-postgresql-secret.sops.yaml"
+       envsubst < "${PROJECT_DIR}/tmpl/cluster/rabbitmq-secret.sops.yaml" \
+            > "${PROJECT_DIR}/cluster/apps/default/rabbitmq/rabbitmq-secret.sops.yaml"
 
         # encrypt cluster secrets
         sops --encrypt --in-place "${PROJECT_DIR}/cluster/config/cluster-secrets.sops.yaml"
@@ -75,6 +77,7 @@ main() {
         sops --encrypt --in-place "${PROJECT_DIR}/cluster/apps/networking/lldap/lldap-secret.sops.yaml"
         sops --encrypt --in-place "${PROJECT_DIR}/cluster/apps/networking/authelia/authelia-secret.sops.yaml"
         sops --encrypt --in-place "${PROJECT_DIR}/cluster/apps/networking/authelia/authelia-postgresql-secret.sops.yaml"
+        sops --encrypt --in-place "${PROJECT_DIR}/cluster/apps/default/rabbitmq/rabbitmq-secret.sops.yaml"
         # generate terraform secrets
         #envsubst < "${PROJECT_DIR}/tmpl/terraform/secret.sops.yaml" \
         #    > "${PROJECT_DIR}/provision/terraform/cloudflare/secret.sops.yaml"
