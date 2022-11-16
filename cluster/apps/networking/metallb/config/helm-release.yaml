@@ -42,4 +42,4 @@ spec:
           namespace: networking
         spec:
           addresses:
-            - "${METALLB_LB_RANGE}/32"
+            - "${SECRET_METALLB_LB_RANGE}/32"

@@ -30,8 +30,27 @@ spec:
     #    memory: 128Mi
     #  limits:
     #    memory: 256Mi
+    ldap:
+      enabled: false
+      uri: "ldap://lldap.networking.svc.cluster.local"
+      port: "389"
+      userDnPattern: ${SECRET_LDAP_USER}
+      binddn: ${SECRET_LDAP_USER}
+      bindpw: ${SECRET_LLDAP_USER_PASS}
+      basedn: ${SECRET_LDAP_BASE_DN}
+      uidField: "uid"
+    persistence:
+      enabled: true
+      existingClaim: rabbitmq-pvc
     service:
       type: ClusterIP
+      extraPorts:
+        - name: mqtt
+          port: 1883
+          targetPort: 1883
+        - name: mqtts
+          port: 8883
+          targetPort: 8883
     image:
       # registry: docker.io
       # repository: bitnami/rabbitmq
@@ -40,20 +59,17 @@ spec:
     auth:
       existingPasswordSecret: rabbitmq-secret
       existingErlangSecret: rabbitmq-secret
-    plugins: "rabbitmq_management rabbitmq_peer_discovery_k8s"
+    #plugins: "rabbitmq_management rabbitmq_peer_discovery_k8s"
     communityPlugins: ""
-    extraPlugins: "rabbitmq_auth_backend_ldap"
+    extraPlugins: "rabbitmq_auth_backend_ldap rabbitmq_mqtt rabbitmq_web_mqtt"
     clustering:
       enabled: false
     ingress:
       enabled: true
+      ingressClassName: "nginx"
       path: /
-      hostname: lldap.${SECRET_DOMAIN}
+      hostname: rabbitmq.${SECRET_DOMAIN}
       annotations:
-        kubernetes.io/ingress.class: nginx
         cert-manager.io/cluster-issuer: "letsencrypt-staging"
         external-dns.alpha.kubernetes.io/target: "ipv4.${SECRET_DOMAIN}"
         external-dns/is-public: "true"
-    persistence:
-      enabled: true
-      existingClaim: rabbitmq-pvc
