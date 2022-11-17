@@ -93,6 +93,7 @@ spec:
               - bw.${SECRET_DOMAIN}
               - cloud.${SECRET_DOMAIN}
               - firefly-iii.${SECRET_DOMAIN}
+              - rabbitmq.${SECRET_DOMAIN}
           # No public access
           - policy: deny
             domain:
