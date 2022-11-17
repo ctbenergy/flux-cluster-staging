@@ -31,7 +31,7 @@ spec:
     #  limits:
     #    memory: 256Mi
     ldap:
-      enabled: false
+      enabled: true
       uri: "ldap://lldap.networking.svc.cluster.local"
       port: "389"
       userDnPattern: ${SECRET_LDAP_USER}
