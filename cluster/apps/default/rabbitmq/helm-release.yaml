@@ -39,6 +39,7 @@ spec:
       bindpw: ${SECRET_LLDAP_USER_PASS}
       basedn: ${SECRET_LDAP_BASE_DN}
       uidField: "uid"
+      authorisationEnabled: true
     persistence:
       enabled: true
       existingClaim: rabbitmq-pvc
