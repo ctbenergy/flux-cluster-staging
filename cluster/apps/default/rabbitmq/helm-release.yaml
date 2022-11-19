@@ -41,7 +41,7 @@ spec:
       uidField: "uid"
       authorisationEnabled: true
     persistence:
-      enabled: true
+      enabled: false
       existingClaim: rabbitmq-pvc
     service:
       type: ClusterIP
