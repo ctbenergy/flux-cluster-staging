@@ -72,3 +72,6 @@ spec:
       userEmail: "admin@localhost"
       userPass: ${SECRET_LLDAP_USER_PASS}
       useSecretFile: false
+    ldaps:
+      enabled: true
+      createdTlsSecretLifetime: 365
