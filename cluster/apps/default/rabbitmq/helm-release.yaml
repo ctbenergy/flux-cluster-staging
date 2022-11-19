@@ -41,7 +41,7 @@ spec:
       uidField: "uid"
       authorisationEnabled: true
     persistence:
-      enabled: false
+      enabled: true
       existingClaim: rabbitmq-pvc
     service:
       type: ClusterIP
@@ -58,6 +58,7 @@ spec:
       # tag: 3.11.3-debian-11-r0
       pullPolicy: IfNotPresent
     auth:
+      username: admin
       existingPasswordSecret: rabbitmq-secret
       existingErlangSecret: rabbitmq-secret
     #plugins: "rabbitmq_management rabbitmq_peer_discovery_k8s"
