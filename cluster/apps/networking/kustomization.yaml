@@ -11,4 +11,4 @@ resources:
   - cert-manager
 # - openldap
   - lldap
-# - authelia
+  - authelia
