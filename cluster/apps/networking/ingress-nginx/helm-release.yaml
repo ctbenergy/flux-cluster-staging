@@ -58,8 +58,10 @@ spec:
         targetPorts:
           http: http
           https: https
-          ldap: ldap
-          ldaps: ldaps
+          # ldap: ldap
+          # ldaps: ldaps
+          ldap: ldap-port
+          ldaps: ssl-ldap-port
           mqtt: mqtt
           mqtts: mqtts
       publishService:
