@@ -34,10 +34,10 @@ spec:
       enabled: true
       uri: "ldap://lldap.networking.svc.cluster.local"
       port: "389"
-      userDnPattern: ${SECRET_LDAP_USER}
-      binddn: ${SECRET_LDAP_USER}
+      userDnPattern: ${SECRET_LLDAP_USER}
+      binddn: ${SECRET_LLDAP_USER}
       bindpw: ${SECRET_LLDAP_USER_PASS}
-      basedn: ${SECRET_LDAP_BASE_DN}
+      basedn: ${SECRET_LLDAP_BASE_DN}
       uidField: "uid"
       authorisationEnabled: true
     persistence:

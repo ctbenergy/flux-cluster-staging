@@ -51,7 +51,7 @@ spec:
           # Use StartTLS with the LDAP connection, TLS not supported right now
           start_tls: false
           # Set base dn, like dc=google,dc.com
-          base_dn: ${SECRET_LDAP_BASE_DN}
+          base_dn: ${SECRET_LLDAP_BASE_DN}
           username_attribute: uid
           # You need to set this to ou=people, because all users are stored in this ou!
           additional_users_dn: ou=people
@@ -70,7 +70,7 @@ spec:
           display_name_attribute: displayName
           # The username and password of the admin user.
           # "admin" should be the admin username you set in the LLDAP configuration
-          user: "${SECRET_LDAP_USER}"
+          user: "${SECRET_LLDAP_USER}"
           # Password can also be set using a secret: https://www.authelia.com/docs/configuration/secrets.html
           password: ${SECRET_LLDAP_USER_PASS}
         file:
