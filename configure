@@ -57,8 +57,8 @@ main() {
         #    > "${PROJECT_DIR}/cluster/apps/networking/cloudflare-ddns/secret.sops.yaml"
         #envsubst < "${PROJECT_DIR}/tmpl/cluster/external-dns-secret.sops.yaml" \
         #    > "${PROJECT_DIR}/cluster/apps/networking/external-dns/secret.sops.yaml"
-        #envsubst < "${PROJECT_DIR}/tmpl/cluster/openldap-secret.sops.yaml" \
-        #    > "${PROJECT_DIR}/cluster/apps/networking/openldap/openldap-secret.sops.yaml"
+        envsubst < "${PROJECT_DIR}/tmpl/cluster/openldap-secret.sops.yaml" \
+            > "${PROJECT_DIR}/cluster/apps/networking/openldap/openldap-secret.sops.yaml"
         envsubst < "${PROJECT_DIR}/tmpl/cluster/lldap-secret.sops.yaml" \
             > "${PROJECT_DIR}/cluster/apps/networking/lldap/lldap-secret.sops.yaml"
         envsubst < "${PROJECT_DIR}/tmpl/cluster/authelia-secret.sops.yaml" \
@@ -73,7 +73,7 @@ main() {
         sops --encrypt --in-place "${PROJECT_DIR}/cluster/apps/networking/cert-manager/issuers/secret.sops.yaml"
         #sops --encrypt --in-place "${PROJECT_DIR}/cluster/apps/networking/cloudflare-ddns/secret.sops.yaml"
         #sops --encrypt --in-place "${PROJECT_DIR}/cluster/apps/networking/external-dns/secret.sops.yaml"
-        #sops --encrypt --in-place "${PROJECT_DIR}/cluster/apps/networking/openldap/openldap-secret.sops.yaml"
+        sops --encrypt --in-place "${PROJECT_DIR}/cluster/apps/networking/openldap/openldap-secret.sops.yaml"
         sops --encrypt --in-place "${PROJECT_DIR}/cluster/apps/networking/lldap/lldap-secret.sops.yaml"
         sops --encrypt --in-place "${PROJECT_DIR}/cluster/apps/networking/authelia/authelia-secret.sops.yaml"
         sops --encrypt --in-place "${PROJECT_DIR}/cluster/apps/networking/authelia/authelia-postgresql-secret.sops.yaml"

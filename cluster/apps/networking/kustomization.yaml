@@ -9,6 +9,6 @@ resources:
   - metallb
 # - k8s-gateway
   - cert-manager
-# - openldap
-  - lldap
+  - openldap
+# - lldap
   - authelia

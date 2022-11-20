@@ -39,54 +39,13 @@ spec:
     persistence:
       enabled: true
       existingClaim: openldap-pvc
-    resources:
-      requests:
-        cpu: 100m
-        memory: 128Mi
-      limits:
-        memory: 256Mi
+#    resources:
+#      requests:
+#        cpu: 100m
+#        memory: 128Mi
+#      limits:
+#        memory: 256Mi
     ltb-passwd:
-      enabled: true
-      image:
-        tag: 5.2.3
-      ingress:
-        enabled: true
-        ingressClassName: "nginx"
-        annotations:
-          cert-manager.io/cluster-issuer: "letsencrypt-staging"
-          external-dns.alpha.kubernetes.io/target: "ipv4.${SECRET_DOMAIN}"
-          external-dns/is-public: "true"
-        hosts:
-          - host: ldap.${SECRET_DOMAIN}
-            paths:
-              - path: /
-                pathType: Prefix
-        tls:
-          - hosts:
-              - ldap.${SECRET_DOMAIN}
-            secretName: "ldap-tls"
-      ldap:
-        server: ldaps://openldap-openldap-stack-ha
-        existingSecret: openldap-secret
-        bindDN: LDAP_BINDDN
-        bindPWKey: LDAP_ADMIN_PASSWORD
+      enabled: false
     phpldapadmin:
-      enabled: true
-      env:
-        PHPLDAPADMIN_LDAP_CLIENT_TLS_REQCERT: "never"
-      ingress:
-        enabled: true
-        ingressClassName: "nginx"
-        podAnnotations:
-          cert-manager.io/cluster-issuer: "letsencrypt-staging"
-          external-dns.alpha.kubernetes.io/target: "ipv4.${SECRET_DOMAIN}"
-          external-dns/is-public: "true"
-        hosts:
-          - host: phpldapadmin.${SECRET_DOMAIN}
-            paths:
-              - path: /
-                pathType: Prefix
-        tls:
-          - hosts:
-              - phpldapadmin.${SECRET_DOMAIN}
-            secretName: phpldapadmin-tls
+      enabled: false
