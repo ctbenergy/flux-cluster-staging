@@ -32,12 +32,12 @@ spec:
     #    memory: 256Mi
     ldap:
       enabled: true
-      uri: "ldap://lldap.networking.svc.cluster.local"
+      uri: "ldap://openldap.networking.svc.cluster.local"
       port: "389"
-      userDnPattern: ${SECRET_LLDAP_USER}
-      binddn: ${SECRET_LLDAP_USER}
-      bindpw: ${SECRET_LLDAP_USER_PASS}
-      basedn: ${SECRET_LLDAP_BASE_DN}
+      userDnPattern: ${SECRET_LDAP_BINDDN}
+      binddn: ${SECRET_LDAP_BINDDN}
+      bindpw: ${SECRET_LDAP_ADMIN_PASSWORD}
+      basedn: ${SECRET_LDAP_BASE_DN}
       uidField: "uid"
       authorisationEnabled: true
     persistence:

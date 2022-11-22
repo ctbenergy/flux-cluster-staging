@@ -7,4 +7,3 @@ resources:
   - hajimari
   - rabbitmq
   - reloader
-# - emqx
