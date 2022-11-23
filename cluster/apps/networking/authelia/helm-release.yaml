@@ -54,7 +54,7 @@ spec:
           implementation: custom
           ## The url to the ldap server. Format: <scheme>://<address>[:<port>].
           ## Scheme can be ldap or ldaps in the format (port optional).
-          url: ldap://ldap.networking.svc.cluster.local:389
+          url: ldap://openldap.networking.svc.cluster.local:389
           # The dial timeout for LDAP.
           timeout: 5s
           ## Use StartTLS with the LDAP connection.
