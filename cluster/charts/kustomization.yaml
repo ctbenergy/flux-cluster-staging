@@ -12,6 +12,8 @@ resources:
   - kubereboot-charts.yaml
   - k8s-gateway-charts.yaml
   - metallb-charts.yaml
+  - rancher-stable-charts.yaml
+  - rancher-latest-charts.yaml
   - metrics-server-charts.yaml
   - stakater-charts.yaml
   - jp-gouin-charts.yaml
