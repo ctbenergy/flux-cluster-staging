@@ -32,7 +32,7 @@ spec:
     #    memory: 256Mi
     ldap:
       enabled: true
-      uri: "ldap://openldap.networking.svc.cluster.local"
+      uri: "ldap://openldap.kube-system.svc.cluster.local"
       port: "389"
       userDnPattern: ${SECRET_LDAP_BINDDN}
       binddn: ${SECRET_LDAP_BINDDN}

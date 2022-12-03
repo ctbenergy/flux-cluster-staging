@@ -32,8 +32,8 @@ spec:
     # Format for each port would be like:
     # <PortNumber>: <Namespace>/<Service>
     tcp:
-      "389": "networking/openldap:389"
-      "636": "networking/openldap:636"
+      "389": "kube-system/openldap:389"
+      "636": "kube-system/openldap:636"
       "1883": "default/rabbitmq:1883"
       "8883": "default/rabbitmq:8883"
     controller:

@@ -3,7 +3,7 @@ apiVersion: helm.toolkit.fluxcd.io/v2beta1
 kind: HelmRelease
 metadata:
   name: authelia
-  namespace: networking
+  namespace: kube-system
 spec:
   interval: 5m
   chart:
@@ -54,7 +54,7 @@ spec:
           implementation: custom
           ## The url to the ldap server. Format: <scheme>://<address>[:<port>].
           ## Scheme can be ldap or ldaps in the format (port optional).
-          url: ldap://openldap.networking.svc.cluster.local:389
+          url: ldap://openldap.kube-system.svc.cluster.local:389
           # The dial timeout for LDAP.
           timeout: 5s
           ## Use StartTLS with the LDAP connection.
