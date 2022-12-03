@@ -9,7 +9,7 @@ repos:
           - .github/linters/.yamllint.yaml
         id: yamllint
   - repo: https://github.com/pre-commit/pre-commit-hooks
-    rev: v4.3.0
+    rev: v4.4.0
     hooks:
       - id: check-merge-conflict
       - id: end-of-file-fixer
@@ -29,7 +29,11 @@ repos:
     rev: v2.1.1
     hooks:
       - id: forbid-secrets
-        exclude: ^tmpl/
+        exclude: |
+          (?x)^(
+            cluster\/apps\/kube-system\/kube-vip\/rbac.yaml|
+            tmpl\/.*.sops\.ya?ml
+            )$
   - repo: https://github.com/gruntwork-io/pre-commit
     rev: v0.1.17
     hooks:
