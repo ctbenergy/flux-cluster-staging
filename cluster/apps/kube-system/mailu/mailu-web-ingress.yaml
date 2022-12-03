@@ -5,6 +5,7 @@ metadata:
   name: mailu-web-ingress
   namespace: kube-system
   annotations:
+    cert-manager.io/cluster-issuer: "letsencrypt-staging"
     nginx.ingress.kubernetes.io/proxy-body-size: "0"
     external-dns.alpha.kubernetes.io/target: "ipv4.${SECRET_DOMAIN}"
     external-dns/is-public: "true"
