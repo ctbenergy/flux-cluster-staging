@@ -7,3 +7,4 @@ resources:
   - ./mailu-web-ingress.yaml
   - ./postgresql-helm-release.yaml
   - ./mailu-postgresql-pvc.yaml
+  - ./mailu-postgresql-secret.sops.yaml

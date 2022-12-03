@@ -63,8 +63,11 @@ main() {
             > "${PROJECT_DIR}/cluster/apps/kube-system/authelia/authelia-secret.sops.yaml"
         envsubst < "${PROJECT_DIR}/tmpl/cluster/authelia-postgresql-secret.sops.yaml" \
             > "${PROJECT_DIR}/cluster/apps/kube-system/authelia/authelia-postgresql-secret.sops.yaml"
-       envsubst < "${PROJECT_DIR}/tmpl/cluster/rabbitmq-secret.sops.yaml" \
+        envsubst < "${PROJECT_DIR}/tmpl/cluster/mailu-postgresql-secret.sops.yaml" \
+            > "${PROJECT_DIR}/cluster/apps/kube-system/mailu/mailu-postgresql-secret.sops.yaml"
+        envsubst < "${PROJECT_DIR}/tmpl/cluster/rabbitmq-secret.sops.yaml" \
             > "${PROJECT_DIR}/cluster/apps/default/rabbitmq/rabbitmq-secret.sops.yaml"
+
        #envsubst < "${PROJECT_DIR}/tmpl/cluster/grafana-secrets.sops.yaml" \
        #     > "${PROJECT_DIR}/cluster/apps/monitoring/kube-prometheus-stack/grafana-secrets.sops.yaml"
 
@@ -76,6 +79,7 @@ main() {
         sops --encrypt --in-place "${PROJECT_DIR}/cluster/apps/kube-system/openldap/openldap-secret.sops.yaml"
         sops --encrypt --in-place "${PROJECT_DIR}/cluster/apps/kube-system/authelia/authelia-secret.sops.yaml"
         sops --encrypt --in-place "${PROJECT_DIR}/cluster/apps/kube-system/authelia/authelia-postgresql-secret.sops.yaml"
+        sops --encrypt --in-place "${PROJECT_DIR}/cluster/apps/kube-system/mailu/mailu-postgresql-secret.sops.yaml"
         sops --encrypt --in-place "${PROJECT_DIR}/cluster/apps/default/rabbitmq/rabbitmq-secret.sops.yaml"
         #sops --encrypt --in-place "${PROJECT_DIR}/cluster/apps/monitoring/kube-prometheus-stack/grafana-secrets.sops.yaml"
 

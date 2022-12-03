@@ -9,7 +9,7 @@ spec:
   chart:
     spec:
       chart: postgresql
-      version: 11.9.11
+      version: 12.1.2
       sourceRef:
         kind: HelmRepository
         name: bitnami
@@ -18,8 +18,9 @@ spec:
   values:
     auth:
       username: mailu
-      password: "${SECRET_MAILU_DB_PASSWORD}"
       database: mailu
+      # password: "${SECRET_MAILU_DB_PASSWORD}"
+      existingSecret: mailu-postgresql-secret
     primary:
       persistence:
         enabled: true
