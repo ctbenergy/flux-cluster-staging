@@ -6,5 +6,4 @@ resources:
   - ./echo-server
   - ./hajimari
   - ./rabbitmq
-  - ./reloader
   - ./goldilocks
