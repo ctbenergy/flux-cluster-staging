@@ -20,3 +20,4 @@ resources:
   - ./prometheus-charts.yaml
   - ./authelia-charts.yaml
   - ./fairwinds-charts.yaml
+  - ./mailu-charts.yaml

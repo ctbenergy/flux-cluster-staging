@@ -11,5 +11,6 @@ resources:
   - ./metallb
   - ./metrics-server
   - ./reloader
+  - ./mailu
   - ./openldap
   - ./authelia
