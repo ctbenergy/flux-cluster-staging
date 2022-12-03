@@ -38,3 +38,4 @@ cluster/charts/longhorn-charts.yaml
 cluster/charts/truecharts-charts.yaml
 
 provision/scripts
+provision/ansible/inventory/group_vars/kubernetes/kube-vip.yml
