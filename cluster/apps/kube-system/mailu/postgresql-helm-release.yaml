@@ -24,7 +24,7 @@ spec:
     primary:
       persistence:
         enabled: true
-        existingClaim: mailu-postgresql
+        existingClaim: mailu-postgresql-data
     metrics:
       enabled: true
       serviceMonitor:
