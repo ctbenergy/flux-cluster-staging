@@ -7,7 +7,9 @@ metadata:
 spec:
   storageClassName: local-path
   accessModes:
-    - ReadWriteMany
+    - ReadWriteOnce
+    # StorageClass "local-path": Only support ReadWriteOnce access mode
+    # - ReadWriteMany
   resources:
     requests:
       storage: 10Gi
