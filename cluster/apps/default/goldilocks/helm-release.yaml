@@ -9,23 +9,67 @@ spec:
   chart:
     spec:
       chart: goldilocks
-      version: 6.3.0
+      version: 6.3.3
       sourceRef:
         kind: HelmRepository
         name: fairwinds-charts
         namespace: flux-system
   values:
     vpa:
+      # vpa.enabled -- If true, the vpa will be installed as a sub-chart
       enabled: true
-    dashboard:
+      updater:
+        enabled: false
+    metrics-server:
+      # metrics-server.enabled -- If true, the metrics-server will be installed as a sub-chart
+      enabled: false
+      apiService:
+        create: true
+    image:
+      # image.repository -- Repository for the goldilocks image
+      repository: us-docker.pkg.dev/fairwinds-ops/oss/goldilocks
+      # image.tag -- The goldilocks image tag to use
+      tag: v4.5.1
+      # image.pullPolicy -- imagePullPolicy - Highly recommended to leave this as `Always`
+      pullPolicy: Always
+    # imagePullSecrets -- A list of image pull secret names to use
+    imagePullSecrets: []
+    nameOverride: ""
+    fullnameOverride: ""
+    controller:
+      # controller.enabled -- Whether or not to install the controller deployment
       enabled: true
-      replicaCount: 1
       resources:
         limits:
           cpu: null
           memory: null
+    deployment:
+      # controller.deployment.extraVolumeMounts -- Extra volume mounts for the controller container
+      extraVolumeMounts: []
+      # controller.deployment.extraVolumes -- Extra volumes for the controller pod
+      extraVolumes: []
+      # controller.deployment.annotations -- Extra annotations for the controller deployment
+      annotations: {}
+      # controller.deployment.additionalLabels -- Extra labels for the controller deployment
+      additionalLabels: {}
+    dashboard:
+      # dashboard.basePath -- Path on which the dashboard is served. Defaults to `/`
+      basePath: null
+      # dashboard.enabled -- If true, the dashboard component will be installed
+      enabled: true
+      # dashboard.replicaCount -- Number of dashboard pods to run
+      replicaCount: 1
+      service:
+        # dashboard.service.type -- The type of the dashboard service
+        type: ClusterIP
+        # dashboard.service.port -- The port to run the dashboard service on
+        port: 80
+        # dashboard.service.annotations -- Extra annotations for the dashboard service
+        annotations: {}
       ingress:
+        # dashboard.ingress.enabled -- Enables an ingress object for the dashboard.
         enabled: true
+        # dashboard.ingress.ingressClassName -- From Kubernetes 1.18+ this field is supported in case your ingress controller supports it. When set, you do not need to add the ingress class as annotation.
         ingressClassName: nginx
         annotations:
           cert-manager.io/cluster-issuer: "letsencrypt-staging"
@@ -41,7 +85,6 @@ spec:
         tls:
           - hosts:
               - "goldilocks.${SECRET_DOMAIN}"
-    controller:
       resources:
         limits:
           cpu: null

@@ -164,7 +164,6 @@ spec:
               - longhorn.${SECRET_DOMAIN}
               - homer-config.${SECRET_DOMAIN}
               - jd2.${SECRET_DOMAIN}
-              - hajimari.${SECRET_DOMAIN}
           # Applications without auth but low security requirements
           - policy: one_factor
             domain:
@@ -172,6 +171,7 @@ spec:
               - prometheus.${SECRET_DOMAIN}
               - alert-manager.${SECRET_DOMAIN}
               - echo-server.${SECRET_DOMAIN}
+              - hajimari.${SECRET_DOMAIN}
       session:
         name: authelia_session
         same_site: lax
