@@ -39,7 +39,8 @@ spec:
       persistence:
         enabled: true
         size: 20Gi
-        storageClassName: longhorn-xfs
+        # storageClassName: longhorn-xfs
+        storageClassName: longhorn-backup
       serviceMonitor:
         enabled: true
       alerting_groups:

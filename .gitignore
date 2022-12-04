@@ -32,10 +32,8 @@ provision/ansible/playbooks/roles/prepare/.travis.yml
 provision/ansible/playbooks/roles/prepare/LICENSE
 provision/ansible/playbooks/roles/prepare/README.md
 
-cluster/apps/longhorn-system
-
-cluster/charts/longhorn-charts.yaml
-cluster/charts/truecharts-charts.yaml
+#cluster/apps/longhorn-system
+#cluster/flux/repositories/helm/longhorn-charts.yaml
 
 provision/scripts
 provision/ansible/inventory/group_vars/kubernetes/kube-vip.yml

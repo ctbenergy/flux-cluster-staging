@@ -4,6 +4,7 @@ kind: Kustomization
 resources:
   - ./default
   - ./kube-system
+  - ./longhorn-system
   # - ./system-upgrade
   # - ./cattle-system
   # - ./monitoring
