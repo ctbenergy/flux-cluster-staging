@@ -35,7 +35,7 @@ spec:
       storageOverProvisioningPercentage: 100
       storageMinimalAvailablePercentage: 10
       nodeDownPodDeletionPolicy: delete-both-statefulset-and-deployment-pod
-      backupTarget: s3://longhorn@us-east-1/
-      backupTargetCredentialSecret: longhorn-system-secrets
+      # backupTarget: s3://longhorn@us-east-1/
+      # backupTargetCredentialSecret: longhorn-system-secrets
       defaultLonghornStaticStorageClass: longhorn-backup
       concurrentAutomaticEngineUpgradePerNodeLimit: 1
