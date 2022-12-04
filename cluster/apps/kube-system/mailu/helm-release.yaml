@@ -17,7 +17,7 @@ spec:
       interval: 5m
   values:
     # renovate: githubReleaseVar repo=mailu/mailu
-    mailuVersion: 1.9.37
+    mailuVersion: 1.9.43
     database:
       type: postgresql
       roundcubeType: postgresql
@@ -57,20 +57,20 @@ spec:
           - "mail.${SECRET_DOMAIN}"
     persistence:
       existingClaim: mailu-storage
-    roundcube:
-      resources:
-        requests:
-          cpu: 200m
-        limits:
-          cpu: 800m
-    rspamd:
-      resources:
-        requests:
-          cpu: 200m
-          memory: 100Mi
-        limits:
-          cpu: 2000m
-          memory: 1500Mi
+    # roundcube:
+    #   resources:
+    #     requests:
+    #       cpu: 200m
+    #     limits:
+    #       cpu: 800m
+    # rspamd:
+    #   resources:
+    #     requests:
+    #       cpu: 200m
+    #       memory: 100Mi
+    #     limits:
+    #       cpu: 2000m
+    #       memory: 1500Mi
     front:
       controller:
         kind: Deployment
