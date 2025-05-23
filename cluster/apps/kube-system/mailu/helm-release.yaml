@@ -414,7 +414,7 @@ spec:
     mysql:
       image:
         repository: library/mariadb
-        tag: 10.11.7
+        tag: 10.11.13
       persistence:
         size: 20Gi
         storageClass: ""
